@@ -9,17 +9,19 @@ function plot_last_forecast(archive) {
   // Из архива всех прогнозов необходимо сформировать запись вида:
   // {"today_utc": 1676538000,"temp_max":[23,23,23,23,23,23,23,23],"temp_min":[12,12,12,23,23,23,23,23],
   //  "pressure"...,"clouds"...,"precipitation"...,"wind_speed"...,"wind_direct"...,"weather_icon_num"...}
-  console.log(archive);
+  //console.log(archive);
   /* Получаем объект вида:
-  "forecast/clouds": "1678093200 30.00 76.00 100.00 100.00 100.00 36.00 100.00 52.00"
-​  "forecast/humidity": "1678093200 35.00 69.00 76.00 68.00 85.00 35.00 57.00 46.00"
-​  "forecast/pop": "1678093200 0.20 0.34 0.91 0.59 1.00 0.00 1.00 0.99"
-​  "forecast/pressure": "1678093200 1007.00 1010.00 1010.00 1003.00 1002.00 1010.00 1001.00 1014.00"
-​  "forecast/temp/max": "1678093200 3.62 5.22 10.82 14.04 8.30 8.66 8.70 7.37"
-​  "forecast/temp/min": "1678093200 -1.09 -0.75 0.41 6.27 0.35 -0.61 3.14 1.09"
-​  "forecast/weather/icon": "1678093200 10d 10d 10d 10d 10d 10d 10d 10d 10d 10d 03d 03d 13d 13d 13d 13d"
-​  "forecast/wind_deg": "1678093200 263.00 185.00 197.00 226.00 301.00 195.00 206.00 286.00"
-​  "forecast/wind_speed": "1678093200 5.17 5.67 6.30 6.97 6.66 8.27 7.16 4.94"
+  "forec_gh/forecast/clouds": "1680771600 100 100 100 100 100 100 100 100"
+​  "forec_gh/forecast/humidity": "1680771600 55 58 72 57 53 44 51 89"
+​  "forec_gh/forecast/pop": "1680771600 68 100 41 20 36 0 100 72"
+​  "forec_gh/forecast/pressure": "1680771600 1012 1017 1022 1025 1024 1020 1008 1001"
+​  "forec_gh/forecast/rain": "1680771600 2.06 5.19 2.31 0.19 1.08 0 3.98 2.27"
+​  "forec_gh/forecast/snow": "1680771600 0 0 0 0 0 0 0 0"
+​  "forec_gh/forecast/temp/max": "1680771600 16.53 16.2 10.63 13.87 15.16 16.28 10.81 8.96"
+​  "forec_gh/forecast/temp/min": "1680771600 10.89 10.21 8.37 6.84 9.79 7.81 7.65 7.38"
+​  "forec_gh/forecast/weather/icon": "1680771600 10d 10d 10d 10d 10d 04d 10d 10d"
+​  "forec_gh/forecast/wind_deg": "1680771600 82 86 91 102 103 113 84 332"
+​  "forec_gh/forecast/wind_speed": "1680771600 6.25 6.31 5.7 4.11 4.64 5.6 5.21 6.09"
   */
 
   let last_forecast = {};
@@ -40,26 +42,12 @@ function plot_last_forecast(archive) {
 	myArray.forEach((element, index) => {
 	  if ((key==0) && (index==0)) last_forecast["today_utc"] = element;
 	  let val;
-	  if (keys[key]=="forecast/weather/icon") val = element; 
+	  if (keys[key]=="forec_gh/forecast/weather/icon") val = element; 
 	  else val = Number(element);
       //if ((keys[key]=="precipitation") || (keys[key]=="wind_speed")) val = val/100.;
       if (index>0) last_forecast[keys[key]].push(val);	  
 	})
   }
-  //console.log("last_forecast:",last_forecast);
-  /*
-  Object { "forecast/temp/min": (8) […], today_utc: "1678093200", "forecast/temp/max": (8) […], "forecast/pressure": (8) […], "forecast/humidity": (8) […], "forecast/wind_speed": (8) […], "forecast/wind_deg": (8) […], "forecast/clouds": (8) […], "forecast/pop": (8) […], "forecast/weather/icon": (16) […] }
-​	"forecast/clouds": Array(8) [ 30, 76, 100, … ]
-​	"forecast/humidity": Array(8) [ 35, 69, 76, … ]
-​	"forecast/pop": Array(8) [ 0.2, 0.34, 0.91, … ]
-​	"forecast/pressure": Array(8) [ 1007, 1010, 1010, … ]
-​	"forecast/temp/max": Array(8) [ 3.62, 5.22, 10.82, … ]
-​	"forecast/temp/min": Array(8) [ -1.09, -0.75, 0.41, … ]
-​	"forecast/weather/icon": Array(16) [ NaN, NaN, NaN, … ]
-​	"forecast/wind_deg": Array(8) [ 263, 185, 197, … ]
-​	"forecast/wind_speed": Array(8) [ 5.17, 5.67, 6.3, … ]
-​	today_utc: "1678093200"
-  */
   plotChart(last_forecast);
 }
 
@@ -91,20 +79,20 @@ function plotChart(jsonValue) {
   //for (var key = 1; key < 8; key++){
   for (var key = 0; key < keys.length; key++){
 	if (keys[key]=="today_utc") continue;
-	if ((keys[key]=="forecast/wind_speed") || (keys[key]=="forecast/wind_deg")) {
-	  var param = jsonValue["forecast/wind_speed"]; // wind_speed
-	  var param1 = jsonValue["forecast/wind_deg"]; // wind_direct
-	} else if (keys[key]=="forecast/clouds") {
-	  var param = jsonValue["forecast/clouds"]; // clouds
-	  var param1 = jsonValue["forecast/weather/icon"]; // weather_icon_num
+	if ((keys[key]=="forec_gh/forecast/wind_speed") || (keys[key]=="forec_gh/forecast/wind_deg")) {
+	  var param = jsonValue["forec_gh/forecast/wind_speed"]; // wind_speed
+	  var param1 = jsonValue["forec_gh/forecast/wind_deg"]; // wind_direct
+	} else if (keys[key]=="forec_gh/forecast/clouds") {
+	  var param = jsonValue["forec_gh/forecast/clouds"]; // clouds
+	  var param1 = jsonValue["forec_gh/forecast/weather/icon"]; // weather_icon_num
 	} else {
 	  var param = jsonValue[keys[key]];
 	}
 	param.forEach((element, index) => {
-	  if ((keys[key]=="forecast/wind_speed") || (keys[key]=="forecast/wind_deg")) { // ветер: сорость (м/с) и направление
+	  if ((keys[key]=="forec_gh/forecast/wind_speed") || (keys[key]=="forec_gh/forecast/wind_deg")) { // ветер: сорость (м/с) и направление
 	    data.push([param[index], param1[index]]);
 	  }
-	  else if (keys[key]=="forecast/clouds") {
+	  else if (keys[key]=="forec_gh/forecast/clouds") {
 		var y = param[index]; 
 		var weather_icon_str = param1[index];
 		var marker = {
@@ -120,59 +108,59 @@ function plotChart(jsonValue) {
 	  }
 	});
 				
-	if (keys[key]=="forecast/temp/max") { // temp_max
+	if (keys[key]=="forec_gh/forecast/temp/max") { // temp_max
 	  chartT.series[0].update({
 	    pointStart: pointStart_curr,
 		data: data //data.data
 	  })	
-	} else if (keys[key]=="forecast/temp/min") { // temp_min
+	} else if (keys[key]=="forec_gh/forecast/temp/min") { // temp_min
 	  chartT.series[1].update({
 		pointStart: pointStart_curr,
 		data: data //data.data
 	  })	
 	} 
-	else if (keys[key]=="forecast/pressure") { // pressure
+	else if (keys[key]=="forec_gh/forecast/pressure") { // pressure
 	  chartPW.series[0].update({
 		pointStart: pointStart_curr,
 		data: data //data.data
 	  })
 	}
-	else if (keys[key]=="forecast/wind_speed") { // forecast/wind_speed
+	else if (keys[key]=="forec_gh/forecast/wind_speed") { // forec_gh/forecast/wind_speed
 	  chartPW.series[1].update({
 		pointStart: pointStart_curr,
 		data: data //data.data
 	  })
-	} else if (keys[key]=="forecast/wind_deg") { // forecast/wind_deg
+	} else if (keys[key]=="forec_gh/forecast/wind_deg") { // forec_gh/forecast/wind_deg
 	  chartPW.series[2].update({
 		pointStart: pointStart_curr,
 		data: data //data.data
 	  })
 	}
-	else if (keys[key]=="forecast/clouds") { // clouds
+	else if (keys[key]=="forec_gh/forecast/clouds") { // clouds
 	  chartWC.series[0].update({
 		pointStart: pointStart_curr,
 		data: data //data.data
 	  })
 	} 
-	else if (keys[key]=="forecast/pop") { // forecast/pop
+	else if (keys[key]=="forec_gh/forecast/pop") { // forec_gh/forecast/pop
 	  chartHPP.series[0].update({
 		pointStart: pointStart_curr,
 		data: data //data.data
 	  })
 	}
-	else if (keys[key]=="forecast/rain") { // forecast/rain
+	else if (keys[key]=="forec_gh/forecast/rain") { // forec_gh/forecast/rain
 	  chartHPP.series[1].update({
 		pointStart: pointStart_curr,
 		data: data //data.data
 	  })
 	}
-	else if (keys[key]=="forecast/snow") { // forecast/snow
+	else if (keys[key]=="forec_gh/forecast/snow") { // forec_gh/forecast/snow
 	  chartHPP.series[2].update({
 		pointStart: pointStart_curr,
 		data: data //data.data
 	  })
 	}
-	else if (keys[key]=="forecast/humidity") { // forecast/humidity
+	else if (keys[key]=="forec_gh/forecast/humidity") { // forec_gh/forecast/humidity
 	  chartHPP.series[3].update({
 		pointStart: pointStart_curr,
 		data: data //data.data
@@ -640,20 +628,6 @@ function create_chart_press_wind(renderTo) {
       }
     },
 	legend: {
-		/*
-      layout: "horizontal",
-      align: "left",
-      useHTML: true,
-      maxHeight: 60,
-      labelFormatter: function () {
-        let color = hexToRgb(this.color);
-        if (!this.visible) {
-          color = { r: 204, g: 204, b: 204 };
-        }
-        var symbol = `<span class="chartSymbol" style="background: rgba(${color.r},${color.g},${color.b},0.1) 0% 0% no-repeat padding-box;border: 4px solid rgba(${color.r},${color.g},${color.b},.5);"></span>`;
-        return `${symbol} ${this.name}`;
-      },
-	  */
 	  itemStyle: {
 	    fontWeight: 'normal'
 	  }
