@@ -53,9 +53,9 @@ function plotDistribution(jsonValue) {
 	var parag = document.createElement('p');
 	parag.style.cssText += 'font-size: 14px; padding: 10px; font-weight: bold;';
 	let label_arr = keys[key].split("/");
-	let lab = label_arr[1];
-	if (label_arr.length >2)
-	  lab += "-" + label_arr[2];
+	let lab = label_arr[2];
+	if (label_arr.length >3)
+	  lab += "-" + label_arr[3];
     var strUpper = lab.charAt(0).toUpperCase() + lab.slice(1);
 	parag.innerText = strUpper;
 	document.getElementById('div_dist_grath').appendChild(parag);
