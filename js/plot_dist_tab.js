@@ -42,7 +42,7 @@ function plot_dist_tab(jsonValue) {
 	  let row = document.createElement('tr');
 	  tbody.appendChild(row);
 	  let td = document.createElement('td');
-	  td.innerHTML = index;
+	  td.innerHTML = (index + 1).toString() + " д.";
 	  row.appendChild(td);
 	  myArray.forEach((element2, index2) => {
 		let td = document.createElement('td');
