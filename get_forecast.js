@@ -5,7 +5,7 @@
 import { MainForec } from './forecast_funct.js';
 import { today_forecast_recorded } from './forecast_funct.js';
 
-let global_path = "forec_gh"; // forec_gh forec_probe
+let global_path = "forec_probe"; // forec_gh forec_probe
 let allow_output = false;
 
 async function get_forecast_openweathermap() {
