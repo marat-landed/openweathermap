@@ -9,7 +9,7 @@ function plot_last_forecast(archive) {
   // Из архива всех прогнозов необходимо сформировать запись вида:
   // {"today_utc": 1676538000,"temp_max":[23,23,23,23,23,23,23,23],"temp_min":[12,12,12,23,23,23,23,23],
   //  "pressure"...,"clouds"...,"precipitation"...,"wind_speed"...,"wind_direct"...,"weather_icon_num"...}
-  
+  console.log(archive);
   /* Получаем объект вида:
   "forecast/clouds": "1678093200 30.00 76.00 100.00 100.00 100.00 36.00 100.00 52.00"
 ​  "forecast/humidity": "1678093200 35.00 69.00 76.00 68.00 85.00 35.00 57.00 46.00"
