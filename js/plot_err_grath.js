@@ -52,8 +52,15 @@ function plot_err_grath(jsonValue) {
 	
 	// Создаем графики распределения ошибок по дням прогноза
 	create_chart_error_mean(renderTo);
+	// Подписываем график
+	chartEr_distr[key].setTitle({
+	  text: strUpper
+	});
 	// Подписываем ось У
-	chartEr_distr[key].yAxis[0].setTitle("" + key);
+	//chartEr_distr[key].yAxis[0].setTitle("" + key);
+	chartEr_distr[key].yAxis[0].setTitle({
+        text: 'New Y axis title'
+    });
 	// Создаем серию (график)
 	chartEr_err[key].addSeries({
       //name: series_name
@@ -89,7 +96,10 @@ function create_chart_error_mean(renderTo) {
       height: 300
     },	  
 	title: {
-	  text: 'Probe'
+	  //text: 'Probe',
+	  style: {
+        fontWeight: 'bold'
+      }
 	},
     plotOptions: {
       series: {
