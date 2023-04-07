@@ -68,8 +68,7 @@ function plot_err_grath(jsonValue) {
     });
 	
 	chartEr_distr[key].options.title.text = key;
-    chartEr_distr[key].setTitle(chart.options.title);
-	
+    chartEr_distr[key].setTitle(chartEr_distr[key].options.title);
 	
 	// Создаем серию (график)
 	chartEr_err[key].addSeries({
