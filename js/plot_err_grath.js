@@ -116,7 +116,7 @@ function create_chart_error_mean(renderTo) {
 	yAxis: [
 	  { 
 	    title: {
-          text: 'Средняя абсолютная ошибка',
+          //text: 'Средняя абсолютная ошибка',
           style: {
             color: Highcharts.getOptions().colors[1]
           }
