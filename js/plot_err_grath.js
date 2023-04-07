@@ -24,6 +24,8 @@ function plot_err_grath(jsonValue) {
 	5, // pop
 	1, // rain
 	1 ]; // snow
+	
+  const yAxis_title = ['градусов', 'градусов', 'гПа', '%', 'м/с', 'градусов', '%', '%', 'мм', 'мм'];
   
   var keys = Object.keys(jsonValue);
   
@@ -32,16 +34,12 @@ function plot_err_grath(jsonValue) {
 	//console.log(key,param); // key = 0..9; param = Array(7) [ "7 2 0 0 0 0 0 0 0 0 0", "4 3 0 0 0 0 0 0 0 0 0", "4 2 0 0 0 0 0 0 0 0 0", "4 0 1 0 0 0 0 0 0 0 0", "0 4 0 0 0 0 0 0 0 0 0", "2 0 0 1 0 0 0 0 0 0 0", "1 1 0 0 0 0 0 0 0 0 0" ]
 	
 	// Создаем подпись параметра
-	var parag = document.createElement('p');
-	parag.style.cssText += 'font-size: 14px; padding: 10px; font-weight: bold;';
 	let label_arr = keys[key].split("/");
 	let lab = label_arr[2];
 	if (label_arr.length >3)
 	  lab += "-" + label_arr[3];
     // Первая буква - большая
     var Chart_title = lab.charAt(0).toUpperCase() + lab.slice(1);
-	parag.innerText = Chart_title;
-	document.getElementById('div_err_grath').appendChild(parag);
 	
 	// Создаем div для графика
 	let div = document.createElement('div');
@@ -51,7 +49,8 @@ function plot_err_grath(jsonValue) {
 	document.getElementById('div_err_grath').appendChild(div);
 	
 	// Создаем графики распределения ошибок по дням прогноза
-	create_chart_error_mean(renderTo, Chart_title);
+	let yAxis_title_text = yAxis_title[key];
+	create_chart_error_mean(renderTo, Chart_title, yAxis_title_text);
 	// Подписываем график
 	chartEr_distr[key].setTitle({
 	  text: Chart_title
@@ -63,12 +62,6 @@ function plot_err_grath(jsonValue) {
 	chartEr_distr[key].yAxis[0].setTitle({
         text: 'New Y axis title'
     });
-	chartEr_distr[key].setTitle({
-      text: 'Different title' //selectedData.org_code + " " + selectedData.org_name + " Metrics"
-    });
-	
-	//chartEr_distr[key].options.title.text = key;
-    //chartEr_distr[key].setTitle(chartEr_distr[key].options.title);
 	
 	// Создаем серию (график)
 	chartEr_err[key].addSeries({
@@ -97,7 +90,7 @@ function plot_err_grath(jsonValue) {
   } // for (var key = 0; key < keys.length; key++){
 }
 
-function create_chart_error_mean(renderTo, Chart_title) {
+function create_chart_error_mean(renderTo, Chart_title, yAxis_title_text) {
   let chart = new Highcharts.chart(renderTo,{
     chart: {
       type: 'line',
@@ -135,7 +128,7 @@ function create_chart_error_mean(renderTo, Chart_title) {
 	yAxis: [
 	  { 
 	    title: {
-          //text: 'Средняя абсолютная ошибка',
+          text: yAxis_title_text,
           style: {
             color: Highcharts.getOptions().colors[1]
           }
