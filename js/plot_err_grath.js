@@ -57,11 +57,13 @@ function plot_err_grath(jsonValue) {
 	  text: strUpper
 	});
 	chartEr_distr[key].setTitle('Some Positive Title');
+	// chart.setTitle({text: "New Title"});
 	// Подписываем ось У
 	//chartEr_distr[key].yAxis[0].setTitle("" + key);
 	chartEr_distr[key].yAxis[0].setTitle({
         text: 'New Y axis title'
     });
+	chartEr_distr[key].yAxis[0].axisTitle.element.text("new Label");
 	// Создаем серию (график)
 	chartEr_err[key].addSeries({
       //name: series_name
