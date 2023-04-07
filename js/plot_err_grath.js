@@ -39,8 +39,8 @@ function plot_err_grath(jsonValue) {
 	if (label_arr.length >3)
 	  lab += "-" + label_arr[3];
     // Первая буква - большая
-    var strUpper = lab.charAt(0).toUpperCase() + lab.slice(1);
-	parag.innerText = strUpper;
+    var Chart_title = lab.charAt(0).toUpperCase() + lab.slice(1);
+	parag.innerText = Chart_title;
 	document.getElementById('div_err_grath').appendChild(parag);
 	
 	// Создаем div для графика
@@ -51,10 +51,10 @@ function plot_err_grath(jsonValue) {
 	document.getElementById('div_err_grath').appendChild(div);
 	
 	// Создаем графики распределения ошибок по дням прогноза
-	create_chart_error_mean(renderTo);
+	create_chart_error_mean(renderTo, Chart_title);
 	// Подписываем график
 	chartEr_distr[key].setTitle({
-	  text: strUpper
+	  text: Chart_title
 	});
 	chartEr_distr[key].setTitle('Some Positive Title');
 	// chart.setTitle({text: "New Title"});
@@ -97,7 +97,7 @@ function plot_err_grath(jsonValue) {
   } // for (var key = 0; key < keys.length; key++){
 }
 
-function create_chart_error_mean(renderTo) {
+function create_chart_error_mean(renderTo, Chart_title) {
   let chart = new Highcharts.chart(renderTo,{
     chart: {
       type: 'line',
@@ -105,7 +105,7 @@ function create_chart_error_mean(renderTo) {
       height: 300
     },	  
 	title: {
-	  //text: 'Probe',
+	  text: Chart_title,
 	  style: {
         fontWeight: 'bold'
       }
