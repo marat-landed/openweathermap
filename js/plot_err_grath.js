@@ -63,7 +63,9 @@ function plot_err_grath(jsonValue) {
 	chartEr_distr[key].yAxis[0].setTitle({
         text: 'New Y axis title'
     });
-	chartEr_distr[key].yAxis[0].axisTitle.element.text("new Label");
+	chartEr_distr[key].setTitle({
+      text: 'Different title' //selectedData.org_code + " " + selectedData.org_name + " Metrics"
+    });
 	// Создаем серию (график)
 	chartEr_err[key].addSeries({
       //name: series_name
