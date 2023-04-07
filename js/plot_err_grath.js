@@ -67,8 +67,8 @@ function plot_err_grath(jsonValue) {
       text: 'Different title' //selectedData.org_code + " " + selectedData.org_name + " Metrics"
     });
 	
-	chartEr_distr[key].options.title.text = key;
-    chartEr_distr[key].setTitle(chartEr_distr[key].options.title);
+	//chartEr_distr[key].options.title.text = key;
+    //chartEr_distr[key].setTitle(chartEr_distr[key].options.title);
 	
 	// Создаем серию (график)
 	chartEr_err[key].addSeries({
