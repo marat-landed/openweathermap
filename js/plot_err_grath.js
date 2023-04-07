@@ -56,6 +56,7 @@ function plot_err_grath(jsonValue) {
 	chartEr_distr[key].setTitle({
 	  text: strUpper
 	});
+	chartEr_distr[key].setTitle('Some Positive Title');
 	// Подписываем ось У
 	//chartEr_distr[key].yAxis[0].setTitle("" + key);
 	chartEr_distr[key].yAxis[0].setTitle({
