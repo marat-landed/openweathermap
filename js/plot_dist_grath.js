@@ -21,18 +21,6 @@ function plotDistribution(jsonValue) {
   // Каждое значение - строка вида "6 1 0 2 0 0 0 0 0 0 0".
   // Каждое элемент в строке - количество ошибок, находящихся в соответствующем интервале.
   
-  const param_scale = [ 
-    1, // temp, min
-	1, // temp, max
-	1, // pressure
-	5, // humidity
-	0.5, // wind_speed
-	5, // wind_deg
-	5, // clouds
-	5, // pop
-	1, // rain
-	1 ]; // snow
-  
   var keys = Object.keys(jsonValue);
   // Сколько дней ведется наблюдение
   let param1 = jsonValue[keys[0]];
@@ -47,18 +35,6 @@ function plotDistribution(jsonValue) {
   
   for (var key = 0; key < keys.length; key++){
 	var param = jsonValue[keys[key]];
-	//console.log(key,param); // key = 0..9; param = Array(7) [ "7 2 0 0 0 0 0 0 0 0 0", "4 3 0 0 0 0 0 0 0 0 0", "4 2 0 0 0 0 0 0 0 0 0", "4 0 1 0 0 0 0 0 0 0 0", "0 4 0 0 0 0 0 0 0 0 0", "2 0 0 1 0 0 0 0 0 0 0", "1 1 0 0 0 0 0 0 0 0 0" ]
-	
-	// Создаем подпись для одного параметра
-	var parag = document.createElement('p');
-	parag.style.cssText += 'font-size: 14px; padding: 10px; font-weight: bold;';
-	let label_arr = keys[key].split("/");
-	let lab = label_arr[2];
-	if (label_arr.length >3)
-	  lab += "-" + label_arr[3];
-    var strUpper = lab.charAt(0).toUpperCase() + lab.slice(1);
-	parag.innerText = strUpper;
-	document.getElementById('div_dist_grath').appendChild(parag);
 	
 	// Создаем div для графика
 	let div = document.createElement('div');
@@ -67,7 +43,7 @@ function plotDistribution(jsonValue) {
 	document.getElementById('div_dist_grath').appendChild(div);
 	
 	// Создаем графики распределения ошибок по дням прогноза
-	create_chart_error_distr(keys[key]);
+	create_chart_error_distr(keys[key], Chart_title);
 	for (let j=0; j<7; j++) {
 	  let series_name = (j+1).toString();
 	  chartEr_distr[key].addSeries({
@@ -116,7 +92,7 @@ function myListener() {
   }
 }
 
-function create_chart_error_distr(renderTo) {
+function create_chart_error_distr(renderTo, Chart_title) {
   let chart = new Highcharts.chart(renderTo,{
     chart: {
       type: 'column',
@@ -124,7 +100,10 @@ function create_chart_error_distr(renderTo) {
       height: 300
     },	  
 	title: {
-	  text: ''
+	  text: Chart_title,
+	  style: {
+        fontWeight: 'bold'
+      }
 	},
     plotOptions: {
       series: {

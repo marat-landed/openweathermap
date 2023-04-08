@@ -13,19 +13,6 @@ function plot_err_grath(jsonValue) {
   // Каждый элемент объекта - массив из 7 значений - по дням прогноза.
   // Каждое значение - строка вида "6 1 0 2 0 0 0 0 0 0 0".
   // Каждое элемент в строке - количество ошибок, находящихся в соответствующем интервале.
-  const param_scale = [ 
-    1, // temp, min
-	1, // temp, max
-	1, // pressure
-	5, // humidity
-	0.5, // wind_speed
-	5, // wind_deg
-	5, // clouds
-	5, // pop
-	1, // rain
-	1 ]; // snow
-	
-  const yAxis_title = ['градусов', 'градусов', 'гПа', '%', 'м/с', 'градусов', '%', '%', 'мм', 'мм'];
   
   var keys = Object.keys(jsonValue);
   
@@ -33,13 +20,7 @@ function plot_err_grath(jsonValue) {
 	var param = jsonValue[keys[key]];
 	//console.log(key,param); // key = 0..9; param = Array(7) [ "7 2 0 0 0 0 0 0 0 0 0", "4 3 0 0 0 0 0 0 0 0 0", "4 2 0 0 0 0 0 0 0 0 0", "4 0 1 0 0 0 0 0 0 0 0", "0 4 0 0 0 0 0 0 0 0 0", "2 0 0 1 0 0 0 0 0 0 0", "1 1 0 0 0 0 0 0 0 0 0" ]
 	
-	// Создаем подпись параметра
-	let label_arr = keys[key].split("/");
-	let lab = label_arr[2];
-	if (label_arr.length >3)
-	  lab += "-" + label_arr[3];
-    // Первая буква - большая
-    //var Chart_title = lab.charAt(0).toUpperCase() + lab.slice(1);
+	// Подпись параметра
 	const Chart_title = Chart_title_arr[key];
 	
 	// Создаем div для графика
@@ -50,8 +31,8 @@ function plot_err_grath(jsonValue) {
 	document.getElementById('div_err_grath').appendChild(div);
 	
 	// Создаем графики распределения ошибок по дням прогноза
-	let yAxis_title_text = yAxis_title[key];
-	create_chart_error_mean(renderTo, Chart_title, yAxis_title_text);
+	let yAxis_title = yAxis_title_arr[key];
+	create_chart_error_mean(renderTo, Chart_title, yAxis_title);
 		
 	// Создаем данные для графика
 	// Вычисляем средние значения ошибок
@@ -75,7 +56,7 @@ function plot_err_grath(jsonValue) {
   } // for (var key = 0; key < keys.length; key++){
 }
 
-function create_chart_error_mean(renderTo, Chart_title, yAxis_title_text) {
+function create_chart_error_mean(renderTo, Chart_title, yAxis_title) {
   let chart = new Highcharts.chart(renderTo,{
     chart: {
       type: 'line',
@@ -139,7 +120,7 @@ function create_chart_error_mean(renderTo, Chart_title, yAxis_title_text) {
 	yAxis: [
 	  { 
 	    title: {
-          text: yAxis_title_text,
+          text: yAxis_title,
           style: {
             color: Highcharts.getOptions().colors[1]
           }
