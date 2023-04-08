@@ -89,15 +89,6 @@ function plotDistribution(jsonValue) {
 	newCategories.push(str);
 	xAxis.setCategories(newCategories);
 
-	//xAxis: {
-    //    categories: ['0-10', '10-20', '20-30', '30-40', '40-50', '50-60', '60-70', '70-80', '80-90', '90-100', 'Более 100'],
-	
-	// Создаем checkbox (7) для переключения видимости серий
-	div = document.createElement('div');
-	div.setAttribute("id", "div-for-check-"+keys[key]);
-	//div.classList.add("table_arch");
-	document.getElementById('div_dist_grath').appendChild(div);
-	  
 	// Создаем данные для графика
 	for (let j=0; j<7; j++) {
 	  let myString = param[j];

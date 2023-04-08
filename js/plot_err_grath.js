@@ -51,23 +51,7 @@ function plot_err_grath(jsonValue) {
 	// Создаем графики распределения ошибок по дням прогноза
 	let yAxis_title_text = yAxis_title[key];
 	create_chart_error_mean(renderTo, Chart_title, yAxis_title_text);
-	// Подписываем график
-	chartEr_distr[key].setTitle({
-	  text: Chart_title
-	});
-	chartEr_distr[key].setTitle('Some Positive Title');
-	// chart.setTitle({text: "New Title"});
-	// Подписываем ось У
-	//chartEr_distr[key].yAxis[0].setTitle("" + key);
-	chartEr_distr[key].yAxis[0].setTitle({
-        text: 'New Y axis title'
-    });
 	
-	// Создаем серию (график)
-	chartEr_err[key].addSeries({
-      //name: series_name
-    });
-	  
 	// Создаем данные для графика
 	// Вычисляем средние значения ошибок
     var data_err = [];
