@@ -1,4 +1,4 @@
-const Chart_title_arr = ['Temp min', 'Temp max', 'Pressure', 'Humidity', 'Wind speed', 'Wind dir', 'Clouds', 'POP', 'Rain', 'Snow'];
+const Chart_title_arr = ['Температура минимальная', 'Температура максимальная', 'Давление', 'Влажность', 'Скорость ветра', 'Направление ветра', 'Облачность', 'Вероятность осадков', 'Дождь', 'Снег'];
 const yAxis_title_arr = ['градусов', 'градусов', 'гПа', '%', 'м/с', 'градусов', '%', '%', 'мм', 'мм'];
 const param_scale = [ 
     1, // temp, min
