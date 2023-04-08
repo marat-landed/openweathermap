@@ -51,7 +51,7 @@ function plot_err_grath(jsonValue) {
 	// Создаем графики распределения ошибок по дням прогноза
 	let yAxis_title_text = yAxis_title[key];
 	create_chart_error_mean(renderTo, Chart_title, yAxis_title_text);
-	
+		
 	// Создаем данные для графика
 	// Вычисляем средние значения ошибок
     var data_err = [];
@@ -96,6 +96,32 @@ function create_chart_error_mean(renderTo, Chart_title, yAxis_title_text) {
         shadow: false
       }
     },
+	series: {
+		//name: 'Tmax',
+		//type: 'line',
+		//color: Highcharts.getOptions().colors[8],//'#FF0000',//Highcharts.getOptions().colors[3], //'#FF0000',
+		//marker: {
+		//  symbol: 'circle',
+		//  radius: 3,
+		//  fillColor: '#FF0000'//'#FF0000',
+		//},
+		//dataLabels: {
+        //  enabled: true,
+        //  style: {
+        //    color: '#FF0000',
+        //    textOutline: 'none',
+        //    fontWeight: 'normal'
+        //  },
+		//  formatter: function () {
+		//	return Highcharts.numberFormat(this.y,1);
+		//  }
+		//},
+		//tooltip: {
+			//valueDecimals: 2,
+		//	valueSuffix: ' °C'
+			// pointFormat: 'Value: {point.y:.2f} mm' // Выводит 2 знака после запятой при наведении мыши: Value: 106.40 mm
+		//}
+	},
 	xAxis: {
 		categories: ['1', '2', '3', '4', '5', '6', '7'],
         labels: {
