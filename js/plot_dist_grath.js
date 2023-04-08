@@ -10,8 +10,7 @@ function plot_dist_grath(all_dist) {
   plotDistribution(all_dist);
 }
 
-var chartEr_mean, // 'chart-mean-error'
-    chartEr_distr = []; // 'chart-distribution-errors'
+var chartEr_distr = []; // 'chart-distribution-errors'
 var error_statistics_mem = [];
 
 function plotDistribution(jsonValue) {
@@ -46,8 +45,7 @@ function plotDistribution(jsonValue) {
 	const Chart_title = Chart_title_arr[key];
 	
 	// Категории оси x
-	var xAxis = chartEr_distr[key].xAxis[0];
-    var xAxis_categories = [];
+	var xAxis_categories = [];
 	for (let i=0; i<10; i++) {
 	  let str = (param_scale[key]*i).toString() + "-" + (param_scale[key]*(i+1)).toString();
 	  xAxis_categories.push(str);
@@ -59,6 +57,7 @@ function plotDistribution(jsonValue) {
 	// Создаем графики распределения ошибок по дням прогноза
 	const xAxis_title = yAxis_title_arr[key];
 	create_chart_error_distr(keys[key], Chart_title, xAxis_title, xAxis_categories);
+	
 	for (let j=0; j<7; j++) {
 	  let series_name = (j+1).toString();
 	  chartEr_distr[key].addSeries({
@@ -166,96 +165,6 @@ function create_chart_error_distr(renderTo, Chart_title, xAxis_title, xAxis_cate
     }
   });
   chartEr_distr.push(chart);
-}
-
-function create_chart_error_mean(renderTo) {
-  chartEr_mean = new Highcharts.chart(renderTo,{	
-	title: {
-	  text: 'Средняя ошибка прогноза температуры'
-	},
-	plotOptions: {
-      series: {
-            pointStart: 1
-      }  
-    },
-	series: [
-	  {
-		name: 'Tmin',
-		type: 'line',
-		tooltip: {
-          valueDecimals: 2,
-        },
-		color: Highcharts.getOptions().colors[0],
-		marker: {
-		  symbol: 'circle',
-		  radius: 3,
-		  fillColor: Highcharts.getOptions().colors[0]
-		},
-		dataLabels: {
-          enabled: true,
-		  format: '{point.y:.1f}',
-          style: {
-            color: 'black',
-            textOutline: 'none',
-            fontWeight: 'normal',
-          },
-		}
-	  },
-	  {
-		name: 'Tmax',
-		type: 'line',
-		tooltip: {
-          valueDecimals: 2,
-        },
-		color: Highcharts.getOptions().colors[3], //'#FF0000',
-		marker: {
-		  symbol: 'circle',
-		  radius: 3,
-		  fillColor: Highcharts.getOptions().colors[3]//'#FF0000',
-		},
-		dataLabels: {
-          enabled: true,
-		  format: '{point.y:.1f}',
-          style: {
-            color: 'black',
-            textOutline: 'none',
-            fontWeight: 'normal',
-          },
-		}
-	  }
-	],
-	xAxis: {
-	  title: {
-		text: 'Глубина прогноза, дней'
-	  },
-	  gridLineWidth: 1,
-	},
-	yAxis: [
-	  {
-	    title: {
-		  text: 'Средняя ошибка, °C'
-	    },
-	    alignTicks: false,
-        tickInterval: 1,
-	  }
-	 ],
-	credits: {
-	  enabled: false
-	},
-	legend: {
-	  itemStyle: {
-	    fontWeight: 'normal'
-	  }
-    },
-	tooltip: {
-      xDateFormat: '%d-%m-%Y',
-      shared: true,
-	  crosshairs: true,
-	  shadow: true,
-      borderWidth: 0,
-      backgroundColor: 'rgba(255,255,255,0.8)'
-    }
-  });
 }
 
 function day_forecastRadio(value) {
