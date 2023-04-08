@@ -31,10 +31,6 @@ function plot_last_forecast(archive) {
   var keys = Object.keys(archive);
   for (var key = 0; key < keys.length; key++){
 	var param = archive[keys[key]];
-	//console.log("typeof param:", typeof param);
-	//console.log("param:", param);
-	//console.log(keys[key]);
-	//console.log(param[0]);
 	// param - строка прогноза вида: 1676538000 -4 -3 2 2 0 2 2 4
 	const myArray = param.split(" "); // [ "1678093200", "-1.09", "-0.75", "0.41", "6.27", "0.35", "-0.61", "3.14", "1.09" ]
 	//console.log("myArray:", myArray);
@@ -53,11 +49,7 @@ function plot_last_forecast(archive) {
 
 //Plot temperature in the temperature chart
 function plotChart(jsonValue) {
-  //console.log(jsonValue);	
   var keys = Object.keys(jsonValue);
-  //console.log("jsonValue.temp_max:",jsonValue.temp_max); // [7, 8, 13, 17, 13, 14, 12, 10]
-  //console.log("jsonValue.today_utc:",jsonValue.today_utc); // ['2022-04-04T09:00:00.000Z', ..., '2022-04-11T09:00:00.000Z']
-  //console.log("keys:",keys); // keys: Array(3) [ "today_utc", "temp_max", "temp_min" ]
   
   // Преобразуем ко времени 00 часов
   var pointStart_curr = parseInt(jsonValue.today_utc/86400)*86400000;

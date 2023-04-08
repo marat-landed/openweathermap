@@ -79,30 +79,6 @@ function create_chart_error_mean(renderTo, Chart_title, yAxis_title) {
       }
     },
 	series: [{
-		//name: '',
-		//type: 'line',
-		//color: Highcharts.getOptions().colors[8],//'#FF0000',//Highcharts.getOptions().colors[3], //'#FF0000',
-		//marker: {
-		//  symbol: 'circle',
-		//  radius: 3,
-		//  fillColor: '#FF0000'//'#FF0000',
-		//},
-		//dataLabels: {
-        //  enabled: true,
-        //  style: {
-        //    color: '#FF0000',
-        //    textOutline: 'none',
-        //    fontWeight: 'normal'
-        //  },
-		//  formatter: function () {
-		//	return Highcharts.numberFormat(this.y,1);
-		//  }
-		//},
-		//tooltip: {
-			//valueDecimals: 2,
-		//	valueSuffix: ' °C'
-			// pointFormat: 'Value: {point.y:.2f} mm' // Выводит 2 знака после запятой при наведении мыши: Value: 106.40 mm
-		//}
 	}],
 	xAxis: {
 		categories: ['1', '2', '3', '4', '5', '6', '7'],
