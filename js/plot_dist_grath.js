@@ -42,6 +42,9 @@ function plotDistribution(jsonValue) {
 	//div.classList.add("table_arch");
 	document.getElementById('div_dist_grath').appendChild(div);
 	
+	// Подпись параметра
+	const Chart_title = Chart_title_arr[key];
+	
 	// Создаем графики распределения ошибок по дням прогноза
 	create_chart_error_distr(keys[key], Chart_title);
 	for (let j=0; j<7; j++) {
