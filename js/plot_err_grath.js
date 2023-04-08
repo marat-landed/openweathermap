@@ -128,7 +128,7 @@ function create_chart_error_mean(renderTo, Chart_title, yAxis_title_text) {
             align: 'center' // выравнивание подписей под серединой столбцов
         },
 		title: {
-          text: '',
+          text: 'Дней',
           style: {
             color: Highcharts.getOptions().colors[1]
           }
