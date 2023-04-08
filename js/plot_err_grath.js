@@ -96,7 +96,7 @@ function create_chart_error_mean(renderTo, Chart_title, yAxis_title_text) {
         shadow: false
       }
     },
-	series: {
+	series: [{
 		name: '',
 		//type: 'line',
 		//color: Highcharts.getOptions().colors[8],//'#FF0000',//Highcharts.getOptions().colors[3], //'#FF0000',
@@ -121,7 +121,7 @@ function create_chart_error_mean(renderTo, Chart_title, yAxis_title_text) {
 		//	valueSuffix: ' °C'
 			// pointFormat: 'Value: {point.y:.2f} mm' // Выводит 2 знака после запятой при наведении мыши: Value: 106.40 mm
 		//}
-	},
+	}],
 	xAxis: {
 		categories: ['1', '2', '3', '4', '5', '6', '7'],
         labels: {
