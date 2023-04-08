@@ -45,8 +45,20 @@ function plotDistribution(jsonValue) {
 	// Подпись параметра
 	const Chart_title = Chart_title_arr[key];
 	
+	// Категории оси x
+	var xAxis = chartEr_distr[key].xAxis[0];
+    var xAxis_categories = [];
+	for (let i=0; i<10; i++) {
+	  let str = (param_scale[key]*i).toString() + "-" + (param_scale[key]*(i+1)).toString();
+	  xAxis_categories.push(str);
+	}
+	let str = "более " + (param_scale[key]*10).toString();
+	xAxis_categories.push(str);
+	//xAxis.setCategories(newCategories);
+	
 	// Создаем графики распределения ошибок по дням прогноза
-	create_chart_error_distr(keys[key], Chart_title);
+	const xAxis_title = yAxis_title_arr[key];
+	create_chart_error_distr(keys[key], Chart_title, xAxis_title, xAxis_categories);
 	for (let j=0; j<7; j++) {
 	  let series_name = (j+1).toString();
 	  chartEr_distr[key].addSeries({
@@ -56,17 +68,6 @@ function plotDistribution(jsonValue) {
 	  series.setVisible(j==0);
 	  series.name = (j+1).toString(); // Пример: distribution/temp/min-6
 	}
-	
-	// Категории оси x
-	var xAxis = chartEr_distr[key].xAxis[0];
-    var newCategories = [];
-	for (let i=0; i<10; i++) {
-	  let str = (param_scale[key]*i).toString() + "-" + (param_scale[key]*(i+1)).toString();
-	  newCategories.push(str);
-	}
-	let str = "более " + (param_scale[key]*10).toString();
-	newCategories.push(str);
-	xAxis.setCategories(newCategories);
 
 	// Создаем данные для графика
 	for (let j=0; j<7; j++) {
@@ -95,7 +96,7 @@ function myListener() {
   }
 }
 
-function create_chart_error_distr(renderTo, Chart_title) {
+function create_chart_error_distr(renderTo, Chart_title, xAxis_title, xAxis_categories) {
   let chart = new Highcharts.chart(renderTo,{
     chart: {
       type: 'column',
@@ -118,12 +119,12 @@ function create_chart_error_distr(renderTo, Chart_title) {
       }
     },
 	xAxis: {
-        categories: ['0-10', '10-20', '20-30', '30-40', '40-50', '50-60', '60-70', '70-80', '80-90', '90-100', 'Более 100'],
+        categories: xAxis_categories,
 		labels: {
             align: 'center' // выравнивание подписей под серединой столбцов
         },
 		title: {
-          text: '',
+          text: xAxis_title,
           style: {
             color: Highcharts.getOptions().colors[1]
           }
