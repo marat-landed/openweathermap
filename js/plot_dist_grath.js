@@ -50,7 +50,7 @@ function plotDistribution(jsonValue) {
 	  let str = (param_scale[key]*i).toString() + "-" + (param_scale[key]*(i+1)).toString();
 	  xAxis_categories.push(str);
 	}
-	let str = "более " + (param_scale[key]*10).toString();
+	let str = ">" + (param_scale[key]*10).toString();
 	xAxis_categories.push(str);
 	//xAxis.setCategories(newCategories);
 	
