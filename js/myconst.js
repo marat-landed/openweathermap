@@ -1,0 +1,1 @@
+var Chart_title_arr = ['Temp min', 'Temp max', 'Pressure', 'Humidity', 'Wind speed', 'Wind dir', 'Clouds', 'POP', 'Rain', 'Snow'];

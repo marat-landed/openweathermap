@@ -39,7 +39,8 @@ function plot_err_grath(jsonValue) {
 	if (label_arr.length >3)
 	  lab += "-" + label_arr[3];
     // Первая буква - большая
-    var Chart_title = lab.charAt(0).toUpperCase() + lab.slice(1);
+    //var Chart_title = lab.charAt(0).toUpperCase() + lab.slice(1);
+	const Chart_title = Chart_title_arr[key];
 	
 	// Создаем div для графика
 	let div = document.createElement('div');
