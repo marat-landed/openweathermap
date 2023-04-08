@@ -166,25 +166,3 @@ function create_chart_error_distr(renderTo, Chart_title, xAxis_title, xAxis_cate
   });
   chartEr_distr.push(chart);
 }
-
-function day_forecastRadio(value) {
-  var value_int = parseInt(value);
-  //console.log(value_int);
-  //console.log(error_statistics_mem);
-  
-  var error_statistics_row = copy_one_row(error_statistics_mem,value_int-1);
-  //console.log(error_statistics_row);
-  chartEr_distr.series[0].setData(error_statistics_row);
-  
-  error_statistics_row = copy_one_row(error_statistics_mem,value_int+6);
-  //console.log(error_statistics_row);
-  chartEr_distr.series[1].setData(error_statistics_row);
-}
-
-function copy_one_row(arr,row_num) {
-  let row1 = [];
-  arr[row_num].forEach(elem => {
-    row1.push(elem)
-  })
-  return row1;
-}

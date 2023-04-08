@@ -79,7 +79,7 @@ function create_chart_error_mean(renderTo, Chart_title, yAxis_title) {
       }
     },
 	series: [{
-		name: '',
+		//name: '',
 		//type: 'line',
 		//color: Highcharts.getOptions().colors[8],//'#FF0000',//Highcharts.getOptions().colors[3], //'#FF0000',
 		//marker: {
